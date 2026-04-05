@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Viraj Arora</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#111;--gray:#666;--light:#f4f4f2;--border:#e2e2de;--white:#fff}
+html{scroll-behavior:smooth}
+body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--black);background:var(--white);line-height:1.6}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;padding:0 2rem;height:56px}
+.nav-name{font-size:14px;font-weight:500;letter-spacing:0.05em;text-transform:uppercase}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;letter-spacing:0.03em;transition:color 0.2s}
+.nav-links a:hover{color:var(--black)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:600px;overflow:hidden;background:#1a1a1a}
+.hero-slides{position:absolute;inset:0;display:flex;transition:transform 0.8s cubic-bezier(.77,0,.18,1);will-change:transform}
+.hero-slide{width:100%;height:100%;position:relative;flex-shrink:0;flex-grow:0}
+.hero-slide img{width:100%;height:100%;object-fit:cover;opacity:0.7}
+.hero-slide .placeholder-bg{width:100%;height:100%;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.2);font-size:13px;letter-spacing:0.1em;text-transform:uppercase}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,rgba(0,0,0,0.1) 60%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 2rem;color:#fff}
+.hero-tag{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:1rem}
+.hero-name{font-size:clamp(3rem,9vw,7.5rem);font-weight:400;letter-spacing:-0.02em;line-height:1;margin-bottom:1.25rem}
+.hero-sub{font-size:clamp(0.9rem,2vw,1.15rem);color:rgba(255,255,255,0.65);max-width:480px;margin-bottom:2rem;font-weight:300}
+.hero-meta{display:flex;gap:2.5rem;flex-wrap:wrap;padding-bottom:1rem}
+.hero-meta-item{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.45)}
+.hero-meta-item span{display:block;font-size:13px;color:#fff;font-weight:500;margin-top:3px}
+.slide-dots{position:absolute;bottom:2rem;right:2rem;display:flex;gap:6px}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.35);cursor:pointer;transition:background 0.3s}
+.dot.active{background:#fff}
+
+
+/* SECTIONS */
+section{padding:5rem 2rem;border-bottom:0.5px solid var(--border)}
+.section-label{font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gray);margin-bottom:3rem}
+.two-col{display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start}
+@media(max-width:680px){.two-col{grid-template-columns:1fr;gap:2rem}}
+
+/* ABOUT */
+.about-bio{font-size:1.05rem;color:var(--gray);line-height:1.8;margin-bottom:1.5rem}
+.about-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:2rem}
+.stat-box{background:var(--white);padding:1rem 1.25rem}
+.stat-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.stat-val{font-size:1rem;font-weight:500}
+.strength-tag{display:inline-block;font-size:12px;border:0.5px solid var(--border);border-radius:20px;padding:4px 14px;margin:4px 4px 0 0;color:var(--gray)}
+.timeline{display:flex;flex-direction:column}
+.tl-item{display:grid;grid-template-columns:90px 1fr;gap:1rem;padding:1.1rem 0;border-bottom:0.5px solid var(--border)}
+.tl-item:last-child{border-bottom:none}
+.tl-year{font-size:12px;color:var(--gray);padding-top:2px}
+.tl-club{font-size:14px;font-weight:500}
+.tl-loc{font-size:12px;color:var(--gray);margin-top:2px}
+.highlights-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:8px;overflow:hidden;margin-top:2rem}
+.highlight-item{background:var(--white);padding:1.25rem}
+.highlight-country{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.highlight-text{font-size:13px;line-height:1.6}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+@media(max-width:600px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+.g-item{aspect-ratio:4/3;overflow:hidden;background:var(--light);position:relative;cursor:pointer}
+.g-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.g-item:hover img{transform:scale(1.05)}
+.g-item.wide{grid-column:span 2;aspect-ratio:16/7}
+.g-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--border);font-size:11px;letter-spacing:0.08em;text-transform:uppercase}
+.g-label{position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,0.45));color:rgba(255,255,255,0.85);font-size:11px;letter-spacing:0.06em;text-transform:uppercase;opacity:0;transition:opacity 0.3s}
+.g-item:hover .g-label{opacity:1}
+.video-wrap{position:relative;grid-column:span 3;aspect-ratio:16/6}
+@media(max-width:600px){.video-wrap{grid-column:span 2}}
+.video-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.video-wrap:hover img{transform:scale(1.03)}
+.play-btn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.play-circle{width:56px;height:56px;background:rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.play-tri{width:0;height:0;border-top:11px solid transparent;border-bottom:11px solid transparent;border-left:18px solid #111;margin-left:5px}
+.gallery-note{margin-top:1rem;font-size:12px;color:var(--gray)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border);border:0.5px solid var(--border);border-radius:8px;overflow:hidden}
+.contact-item{background:var(--white);padding:1.25rem}
+.contact-label{font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gray);margin-bottom:6px}
+.contact-val{font-size:14px;font-weight:500}
+.contact-val a{color:var(--black);text-decoration:none;border-bottom:0.5px solid var(--border);transition:border-color 0.2s}
+.contact-val a:hover{border-color:var(--black)}
+.cta-link{display:inline-flex;align-items:center;gap:8px;margin-top:3rem;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;color:var(--black);text-decoration:none;border-bottom:0.5px solid var(--black);padding-bottom:2px;transition:opacity 0.2s}
+.cta-link:hover{opacity:0.55}
+footer{padding:2rem;font-size:12px;color:var(--gray);letter-spacing:0.04em}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Viraj Arora</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO with slideshow (images 1 & 2) -->
+<div class="hero">
+  <div class="hero-slides" id="slides">
+    <div class="hero-slide">
+      <img src="images/img3.jpg" alt="Viraj Arora hero photo 1" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/img4.jpg" alt="Viraj Arora hero photo 2" />
+    </div>
+    <div class="hero-slide">
+      <img src="images/img8.jpg" alt="Viraj Arora hero photo 2" />
+    </div>
+
+  </div>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Footballer · Left Winger</div>
+    <h1 class="hero-name">Viraj<br>Arora</h1>
+    <p class="hero-sub">Aspiring professional — currently at FC Ordino, Andorra's Primera Divisió. Aiming for a major European league.</p>
+    <a href="https://www.transfermarkt.co.in/jumplist/transfers/spieler/1511121/transfer_id/6169841" target="_blank" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:1.5rem;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.7);text-decoration:none;border-bottom:0.5px solid rgba(255,255,255,0.3);padding-bottom:2px;transition:color 0.2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.7)'">View on Transfermarkt →</a>
+    <div class="hero-meta">
+      <div class="hero-meta-item">Current club<span>FC Ordino</span></div>
+      <div class="hero-meta-item">Position<span>Left Winger</span></div>
+      <div class="hero-meta-item">Nationality<span>Indian</span></div>
+      <div class="hero-meta-item">Height<span>175 cm</span></div>
+    </div>
+  </div>
+
+  <div class="slide-dots" id="dots">
+    <div class="dot active" onclick="goTo(0)"></div>
+    <div class="dot" onclick="goTo(1)"></div>
+    <div class="dot" onclick="goTo(2)"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">About</div>
+  <div class="two-col">
+    <div>
+      <p class="about-bio">A team player with the right focus and attitude on the pitch. Motivated, constantly communicating, and placing a high importance on work ethics.</p>
+      <p class="about-bio">Athletic frame with high stamina, good first touch, strong ball control, and sound dribbling. Known for reading the game well and staying calm under pressure.</p>
+      <div class="about-stats">
+        <div class="stat-box"><div class="stat-label">DOB</div><div class="stat-val">21 Jun 2006</div></div>
+        <div class="stat-box"><div class="stat-label">Weight</div><div class="stat-val">67 kg</div></div>
+        <div class="stat-box"><div class="stat-label">Height</div><div class="stat-val">175 cm</div></div>
+        <div class="stat-box"><div class="stat-label">Preferred foot</div><div class="stat-val">Right</div></div>
+      </div>
+      <div>
+        <div class="stat-label" style="margin-bottom:10px">Strengths</div>
+        <span class="strength-tag">Tactical awareness</span>
+        <span class="strength-tag">Two-footed</span>
+        <span class="strength-tag">Clinical finishing</span>
+        <span class="strength-tag">Staying compact</span>
+        <span class="strength-tag">Covering spaces</span>
+        <span class="strength-tag">Agile &amp; quick</span>
+      </div>
+    </div>
+    <div>
+      <div class="stat-label" style="margin-bottom:1rem">Career timeline</div>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">2025–Now</div><div><div class="tl-club">FC Ordino</div><div class="tl-loc">Primera Divisió · Andorra</div></div></div>
+        <div class="tl-item"><div class="tl-year">2025</div><div><div class="tl-club">Inter Club d'Escaldes</div><div class="tl-loc">Andorra</div></div></div>
+        <div class="tl-item"><div class="tl-year">2024–25</div><div><div class="tl-club">S.E Penya Independent Ibiza</div><div class="tl-loc">Liga Nacional Juvenile · Spain</div></div></div>
+        <div class="tl-item"><div class="tl-year">2022–24</div><div><div class="tl-club">Brooke House College FA</div><div class="tl-loc">ECFA &amp; ESFA Leagues · UK</div></div></div>
+        <div class="tl-item"><div class="tl-year">2021–22</div><div><div class="tl-club">Bangalore International FA</div><div class="tl-loc">Karnataka State League · India</div></div></div>
+        <div class="tl-item"><div class="tl-year">2016–21</div><div><div class="tl-club">BYFL</div><div class="tl-loc">Bangalore, India</div></div></div>
+        <div class="tl-item"><div class="tl-year">2014–16</div><div><div class="tl-club">Bengaluru FC</div><div class="tl-loc">India</div></div></div>
+      </div>
+      <div class="highlights-row">
+        <div class="highlight-item"><div class="highlight-country">India</div><div class="highlight-text">Top Scorer, Karnataka State FA League (2019–20 &amp; 2021–22). AIFF U-13 I-League Semifinalist.</div></div>
+        <div class="highlight-item"><div class="highlight-country">Spain</div><div class="highlight-text">Trained with S.E Penya's Liga Tercera Federacion team, ranked top in Group 3.</div></div>
+        <div class="highlight-item"><div class="highlight-country">Andorra</div><div class="highlight-text">Played Andorran Supercup. Loaned to Primera Divisió side FC Ordino.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY — all 9 images + YouTube -->
+<section id="gallery">
+  <div class="section-label">Gallery &amp; Highlights</div>
+
+  <!-- YouTube highlight — full width -->
+  <div class="video-wrap" style="margin-bottom:3px;cursor:pointer" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/B_rOwbUoulw?autoplay=1\' allow=\'autoplay;encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'">
+    <img src="https://img.youtube.com/vi/B_rOwbUoulw/maxresdefault.jpg" alt="Playing highlights" onerror="this.style.background='#1a1a1a';this.style.display='block'"/>
+    <div class="play-btn"><div class="play-circle"><div class="play-tri"></div></div></div>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="g-item wide"><img src="images/img1.jpg" alt="Training Andorra"/><div class="g-label">Training · Andorra</div></div>
+    <div class="g-item"><img src="images/img2.jpg" alt="Training Andorra"/><div class="g-label">Training · Andorra</div></div>
+    <div class="g-item"><img src="images/img3.jpg" alt="Match Spain"/><div class="g-label">Match · Spain</div></div>
+    <div class="g-item"><img src="images/img4.jpg" alt="Team warmup Spain"/><div class="g-label">Team warmup · Spain</div></div>
+    <div class="g-item"><img src="images/img5.jpg" alt="Training Andorra"/><div class="g-label">Training · Andorra</div></div>
+    <div class="g-item wide"><img src="images/img6.jpg" alt="Training FC Ordino"/><div class="g-label">Training · FC Ordino</div></div>
+    <div class="g-item"><img src="images/img7.jpg" alt="Match #24"/><div class="g-label">Match · #24</div></div>
+    <div class="g-item"><img src="images/img8.jpg" alt="Matchday Spain"/><div class="g-label">Matchday · Spain</div></div>
+    <div class="g-item"><img src="images/img9.jpg" alt="Training FC Ordino"/><div class="g-label">Training · FC Ordino</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <div class="contact-grid">
+    <div class="contact-item"><div class="contact-label">Email</div><div class="contact-val"><a href="mailto:virajarora2006@gmail.com">virajarora2006@gmail.com</a></div></div>
+    <div class="contact-item"><div class="contact-label">Agent / Parent</div><div class="contact-val"><a href="mailto:anooparora2006@gmail.com">anooparora2006@gmail.com</a></div></div>
+    <div class="contact-item"><div class="contact-label">Phone · Spain</div><div class="contact-val"><a href="tel:+34645622579">+34 645 622 579</a></div></div>
+    <div class="contact-item"><div class="contact-label">Phone · India</div><div class="contact-val"><a href="tel:+919845199851">+91 98451 99851</a></div></div>
+    <div class="contact-item"><div class="contact-label">Transfermarkt</div><div class="contact-val"><a href="https://www.transfermarkt.co.in/jumplist/transfers/spieler/1511121/transfer_id/6169841" target="_blank">transfermarkt.co.in</a></div></div>
+  </div>
+</section>
+
+<footer>© 2026 Viraj Arora · Indian · Based in Spain</footer>
+
+<script>
+let cur = 0;
+const slides = document.getElementById('slides');
+const dots = document.querySelectorAll('.dot');
+function goTo(n) {
+  cur = n;
+  const w = slides.parentElement.offsetWidth;
+  slides.style.transform = `translateX(-${cur * w}px)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+}
+window.addEventListener('resize', () => goTo(cur));
+function next() { goTo((cur + 1) % 3); }
+function prev() { goTo((cur - 1 + 3) % 3); }
+setInterval(next, 5000);
+window.onbeforeunload = () => window.scrollTo(0, 0);
+</script>
+</body>
+</html>
