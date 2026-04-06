@@ -165,7 +165,7 @@ footer{padding:2rem;font-size:12px;color:var(--gray);letter-spacing:0.04em}
       <div class="stat-label" style="margin-bottom:1rem">Career timeline</div>
       <div class="timeline">
         <div class="tl-item"><div class="tl-year">2025–Now</div><div><div class="tl-club">FC Ordino</div><div class="tl-loc">Primera Divisió · Andorra</div></div></div>
-        <div class="tl-item"><div class="tl-year">2025</div><div><div class="tl-club">Inter Club d'Escaldes</div><div class="tl-loc">Andorra</div></div></div>
+        <div class="tl-item"><div class="tl-year">2025</div><div><div class="tl-club">Inter Club d'Escaldes</div><div class="tl-loc">Primera Divisió · Andorra</div></div></div>
         <div class="tl-item"><div class="tl-year">2024–25</div><div><div class="tl-club">S.E Penya Independent Ibiza</div><div class="tl-loc">Liga Nacional Juvenile · Spain</div></div></div>
         <div class="tl-item"><div class="tl-year">2022–24</div><div><div class="tl-club">Brooke House College FA</div><div class="tl-loc">ECFA &amp; ESFA Leagues · UK</div></div></div>
         <div class="tl-item"><div class="tl-year">2021–22</div><div><div class="tl-club">Bangalore International FA</div><div class="tl-loc">Karnataka State League · India</div></div></div>
@@ -173,9 +173,9 @@ footer{padding:2rem;font-size:12px;color:var(--gray);letter-spacing:0.04em}
         <div class="tl-item"><div class="tl-year">2014–16</div><div><div class="tl-club">Bengaluru FC</div><div class="tl-loc">India</div></div></div>
       </div>
       <div class="highlights-row">
-        <div class="highlight-item"><div class="highlight-country">India</div><div class="highlight-text">Top Scorer, Karnataka State FA League (2019–20 &amp; 2021–22). AIFF U-13 I-League Semifinalist.</div></div>
-        <div class="highlight-item"><div class="highlight-country">Spain</div><div class="highlight-text">Trained with S.E Penya's Liga Tercera Federacion team, ranked top in Group 3.</div></div>
         <div class="highlight-item"><div class="highlight-country">Andorra</div><div class="highlight-text">Played Andorran Supercup. Loaned to Primera Divisió side FC Ordino.</div></div>
+        <div class="highlight-item"><div class="highlight-country">Spain</div><div class="highlight-text">Played with S.E Penya's Liga Tercera Federacion team, ranked top in Group 3.</div></div>
+        <div class="highlight-item"><div class="highlight-country">India</div><div class="highlight-text">Top Scorer, Karnataka State FA League (2019–20 &amp; 2021–22). AIFF U-13 I-League Semifinalist.</div></div>
       </div>
     </div>
   </div>
@@ -190,6 +190,10 @@ footer{padding:2rem;font-size:12px;color:var(--gray);letter-spacing:0.04em}
     <img src="https://img.youtube.com/vi/Yr51hHOrdEY/maxresdefault.jpg" alt="Playing highlights" onerror="this.style.background='#1a1a1a'"/>
     <div class="play-btn"><div class="play-circle"><div class="play-tri"></div></div></div>
 </div>
+<div class="video-wrap" style="margin-bottom:3px;cursor:pointer" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/B_rOwbUoulw?autoplay=1\' allow=\'autoplay;encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'">
+    <img src="https://img.youtube.com/vi/B_rOwbUoulw/maxresdefault.jpg" alt="Playing highlights" onerror="this.style.background='#1a1a1a';this.style.display='block'"/>
+    <div class="play-btn"><div class="play-circle"><div class="play-tri"></div></div></div>
+  </div>
 
   <div class="gallery-grid">
     <div class="g-item"><img src="images/img1.jpg" alt="Training Andorra"/><div class="g-label"></div></div>
@@ -211,11 +215,6 @@ footer{padding:2rem;font-size:12px;color:var(--gray);letter-spacing:0.04em}
     <div class="g-item"><img src="images/img5.jpg" alt="Training Andorra"/><div class="g-label"></div></div>
     <div class="g-item"><img src="images/img6.jpg" alt="Training FC Ordino"/><div class="g-label"></div></div>
     <div class="g-item"><img src="images/img7.jpg" alt="Match #24"/><div class="g-label"></div></div>
-  </div>
-
-  <div class="video-wrap" style="margin-bottom:3px;cursor:pointer" onclick="this.innerHTML='<iframe src=\'https://www.youtube.com/embed/B_rOwbUoulw?autoplay=1\' allow=\'autoplay;encrypted-media\' allowfullscreen style=\'width:100%;height:100%;border:none;\'></iframe>'">
-    <img src="https://img.youtube.com/vi/B_rOwbUoulw/maxresdefault.jpg" alt="Playing highlights" onerror="this.style.background='#1a1a1a';this.style.display='block'"/>
-    <div class="play-btn"><div class="play-circle"><div class="play-tri"></div></div></div>
   </div>
 </section>
 
@@ -244,7 +243,7 @@ function goTo(n) {
 window.addEventListener('resize', () => goTo(cur));
 function next() { goTo((cur + 1) % 3); }
 function prev() { goTo((cur - 1 + 3) % 3); }
-setInterval(next, 5000);
+setInterval(next, 3000);
 window.onbeforeunload = () => window.scrollTo(0, 0);
 </script>
 </body>
